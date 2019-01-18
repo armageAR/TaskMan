@@ -98,9 +98,25 @@ class SingleProject extends Component {
 
     //END TASK METHODS
 
+    handelBackHome() {
+        const { history } = this.props;
+        history.push("/");
+    }
     render() {
         const { project, tasks } = this.state;
-
+        if (!this.state.project.name) {
+            return (
+                <div className="container py-4">
+                    <div className="row justify-content-center">
+                        <div className="col-md-8">
+                            <div className="card text-center p-5">
+                                <div id="loading" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className="container py-4">
                 <div className="row justify-content-center">
@@ -109,7 +125,12 @@ class SingleProject extends Component {
                             <div className="card-header">{project.name}</div>
                             <div className="card-body">
                                 <p>{project.description}</p>
-
+                                <button
+                                    className="btn btn-success mr-3 btn-sm"
+                                    onClick={this.handelBackHome.bind(this)}
+                                >
+                                    Back
+                                </button>
                                 <button
                                     className="btn btn-primary btn-sm"
                                     onClick={this.handleMarkProjectAsCompleted}

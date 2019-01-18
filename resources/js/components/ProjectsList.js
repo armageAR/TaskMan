@@ -20,6 +20,22 @@ class ProjectsList extends Component {
 
     render() {
         const { projects } = this.state;
+        if (!this.state.projects.length) {
+            return (
+                <div className="container py-4">
+                    <div className="row justify-content-center">
+                        <div className="col-md-8">
+                            <div className="card">
+                                <div className="card-header">All projects</div>
+                                <div className="card-body text-center">
+                                    <div id="loading" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className="container py-4">
                 <div className="row justify-content-center">

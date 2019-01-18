@@ -43,7 +43,10 @@ class NewProject extends Component {
                 });
             });
     }
-
+    handelBackHome() {
+        const { history } = this.props;
+        history.push("/");
+    }
     hasErrorFor(field) {
         return !!this.state.errors[field];
     }
@@ -107,6 +110,12 @@ class NewProject extends Component {
                                     </div>
                                     <button className="btn btn-primary">
                                         Create
+                                    </button>
+                                    <button
+                                        className="btn btn-danger float-right"
+                                        onClick={this.handelBackHome.bind(this)}
+                                    >
+                                        Cancel
                                     </button>
                                 </form>
                             </div>
