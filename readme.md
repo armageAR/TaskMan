@@ -1,7 +1,7 @@
 # Task Man
 
 This is a test project based on [this other project](https://github.com/ammezie/tasksman)
-Original Author: @ammezie
+Original Author: @github/ammezie
 
 ## Tech used
 
