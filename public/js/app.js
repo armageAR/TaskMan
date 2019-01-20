@@ -1754,6 +1754,68 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2017 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg) && arg.length) {
+				var inner = classNames.apply(null, arg);
+				if (inner) {
+					classes.push(inner);
+				}
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
+
+/***/ }),
+
 /***/ "./node_modules/history/es/DOMUtils.js":
 /*!*********************************************!*\
   !*** ./node_modules/history/es/DOMUtils.js ***!
@@ -26452,6 +26514,381 @@ function pathToRegexp (path, keys, options) {
 
 /***/ }),
 
+/***/ "./node_modules/react-toggle/dist/component/check.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-toggle/dist/component/check.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    'svg',
+    { width: '14', height: '11', viewBox: '0 0 14 11' },
+    _react2.default.createElement(
+      'title',
+      null,
+      'switch-check'
+    ),
+    _react2.default.createElement('path', { d: 'M11.264 0L5.26 6.004 2.103 2.847 0 4.95l5.26 5.26 8.108-8.107L11.264 0', fill: '#fff', fillRule: 'evenodd' })
+  );
+};
+
+/***/ }),
+
+/***/ "./node_modules/react-toggle/dist/component/index.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-toggle/dist/component/index.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _check = __webpack_require__(/*! ./check */ "./node_modules/react-toggle/dist/component/check.js");
+
+var _check2 = _interopRequireDefault(_check);
+
+var _x = __webpack_require__(/*! ./x */ "./node_modules/react-toggle/dist/component/x.js");
+
+var _x2 = _interopRequireDefault(_x);
+
+var _util = __webpack_require__(/*! ./util */ "./node_modules/react-toggle/dist/component/util.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Toggle = function (_PureComponent) {
+  _inherits(Toggle, _PureComponent);
+
+  function Toggle(props) {
+    _classCallCheck(this, Toggle);
+
+    var _this = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
+
+    _this.handleClick = _this.handleClick.bind(_this);
+    _this.handleTouchStart = _this.handleTouchStart.bind(_this);
+    _this.handleTouchMove = _this.handleTouchMove.bind(_this);
+    _this.handleTouchEnd = _this.handleTouchEnd.bind(_this);
+    _this.handleFocus = _this.handleFocus.bind(_this);
+    _this.handleBlur = _this.handleBlur.bind(_this);
+    _this.previouslyChecked = !!(props.checked || props.defaultChecked);
+    _this.state = {
+      checked: !!(props.checked || props.defaultChecked),
+      hasFocus: false
+    };
+    return _this;
+  }
+
+  _createClass(Toggle, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if ('checked' in nextProps) {
+        this.setState({ checked: !!nextProps.checked });
+      }
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(event) {
+      var checkbox = this.input;
+      if (event.target !== checkbox && !this.moved) {
+        this.previouslyChecked = checkbox.checked;
+        event.preventDefault();
+        checkbox.focus();
+        checkbox.click();
+        return;
+      }
+
+      var checked = this.props.hasOwnProperty('checked') ? this.props.checked : checkbox.checked;
+
+      this.setState({ checked: checked });
+    }
+  }, {
+    key: 'handleTouchStart',
+    value: function handleTouchStart(event) {
+      this.startX = (0, _util.pointerCoord)(event).x;
+      this.activated = true;
+    }
+  }, {
+    key: 'handleTouchMove',
+    value: function handleTouchMove(event) {
+      if (!this.activated) return;
+      this.moved = true;
+
+      if (this.startX) {
+        var currentX = (0, _util.pointerCoord)(event).x;
+        if (this.state.checked && currentX + 15 < this.startX) {
+          this.setState({ checked: false });
+          this.startX = currentX;
+          this.activated = true;
+        } else if (currentX - 15 > this.startX) {
+          this.setState({ checked: true });
+          this.startX = currentX;
+          this.activated = currentX < this.startX + 5;
+        }
+      }
+    }
+  }, {
+    key: 'handleTouchEnd',
+    value: function handleTouchEnd(event) {
+      if (!this.moved) return;
+      var checkbox = this.input;
+      event.preventDefault();
+
+      if (this.startX) {
+        var endX = (0, _util.pointerCoord)(event).x;
+        if (this.previouslyChecked === true && this.startX + 4 > endX) {
+          if (this.previouslyChecked !== this.state.checked) {
+            this.setState({ checked: false });
+            this.previouslyChecked = this.state.checked;
+            checkbox.click();
+          }
+        } else if (this.startX - 4 < endX) {
+          if (this.previouslyChecked !== this.state.checked) {
+            this.setState({ checked: true });
+            this.previouslyChecked = this.state.checked;
+            checkbox.click();
+          }
+        }
+
+        this.activated = false;
+        this.startX = null;
+        this.moved = false;
+      }
+    }
+  }, {
+    key: 'handleFocus',
+    value: function handleFocus(event) {
+      var onFocus = this.props.onFocus;
+
+
+      if (onFocus) {
+        onFocus(event);
+      }
+
+      this.setState({ hasFocus: true });
+    }
+  }, {
+    key: 'handleBlur',
+    value: function handleBlur(event) {
+      var onBlur = this.props.onBlur;
+
+
+      if (onBlur) {
+        onBlur(event);
+      }
+
+      this.setState({ hasFocus: false });
+    }
+  }, {
+    key: 'getIcon',
+    value: function getIcon(type) {
+      var icons = this.props.icons;
+
+      if (!icons) {
+        return null;
+      }
+      return icons[type] === undefined ? Toggle.defaultProps.icons[type] : icons[type];
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          className = _props.className,
+          _icons = _props.icons,
+          inputProps = _objectWithoutProperties(_props, ['className', 'icons']);
+
+      var classes = (0, _classnames2.default)('react-toggle', {
+        'react-toggle--checked': this.state.checked,
+        'react-toggle--focus': this.state.hasFocus,
+        'react-toggle--disabled': this.props.disabled
+      }, className);
+
+      return _react2.default.createElement(
+        'div',
+        { className: classes,
+          onClick: this.handleClick,
+          onTouchStart: this.handleTouchStart,
+          onTouchMove: this.handleTouchMove,
+          onTouchEnd: this.handleTouchEnd },
+        _react2.default.createElement(
+          'div',
+          { className: 'react-toggle-track' },
+          _react2.default.createElement(
+            'div',
+            { className: 'react-toggle-track-check' },
+            this.getIcon('checked')
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'react-toggle-track-x' },
+            this.getIcon('unchecked')
+          )
+        ),
+        _react2.default.createElement('div', { className: 'react-toggle-thumb' }),
+        _react2.default.createElement('input', _extends({}, inputProps, {
+          ref: function ref(_ref) {
+            _this2.input = _ref;
+          },
+          onFocus: this.handleFocus,
+          onBlur: this.handleBlur,
+          className: 'react-toggle-screenreader-only',
+          type: 'checkbox' }))
+      );
+    }
+  }]);
+
+  return Toggle;
+}(_react.PureComponent);
+
+exports.default = Toggle;
+
+
+Toggle.displayName = 'Toggle';
+
+Toggle.defaultProps = {
+  icons: {
+    checked: _react2.default.createElement(_check2.default, null),
+    unchecked: _react2.default.createElement(_x2.default, null)
+  }
+};
+
+Toggle.propTypes = {
+  checked: _propTypes2.default.bool,
+  disabled: _propTypes2.default.bool,
+  defaultChecked: _propTypes2.default.bool,
+  onChange: _propTypes2.default.func,
+  onFocus: _propTypes2.default.func,
+  onBlur: _propTypes2.default.func,
+  className: _propTypes2.default.string,
+  name: _propTypes2.default.string,
+  value: _propTypes2.default.string,
+  id: _propTypes2.default.string,
+  'aria-labelledby': _propTypes2.default.string,
+  'aria-label': _propTypes2.default.string,
+  icons: _propTypes2.default.oneOfType([_propTypes2.default.bool, _propTypes2.default.shape({
+    checked: _propTypes2.default.node,
+    unchecked: _propTypes2.default.node
+  })])
+};
+
+/***/ }),
+
+/***/ "./node_modules/react-toggle/dist/component/util.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/react-toggle/dist/component/util.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.pointerCoord = pointerCoord;
+// Copyright 2015-present Drifty Co.
+// http://drifty.com/
+// from: https://github.com/driftyco/ionic/blob/master/src/util/dom.ts
+
+function pointerCoord(event) {
+  // get coordinates for either a mouse click
+  // or a touch depending on the given event
+  if (event) {
+    var changedTouches = event.changedTouches;
+    if (changedTouches && changedTouches.length > 0) {
+      var touch = changedTouches[0];
+      return { x: touch.clientX, y: touch.clientY };
+    }
+    var pageX = event.pageX;
+    if (pageX !== undefined) {
+      return { x: pageX, y: event.pageY };
+    }
+  }
+  return { x: 0, y: 0 };
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-toggle/dist/component/x.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/react-toggle/dist/component/x.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+  return _react2.default.createElement(
+    'svg',
+    { width: '10', height: '10', viewBox: '0 0 10 10' },
+    _react2.default.createElement(
+      'title',
+      null,
+      'switch-x'
+    ),
+    _react2.default.createElement('path', { d: 'M9.9 2.12L7.78 0 4.95 2.828 2.12 0 0 2.12l2.83 2.83L0 7.776 2.123 9.9 4.95 7.07 7.78 9.9 9.9 7.776 7.072 4.95 9.9 2.12', fill: '#fff', fillRule: 'evenodd' })
+  );
+};
+
+/***/ }),
+
 /***/ "./node_modules/react/cjs/react.development.js":
 /*!*****************************************************!*\
   !*** ./node_modules/react/cjs/react.development.js ***!
@@ -30148,7 +30585,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var projects = this.state.projects;
+      var projects = this.state.projects; //console.log(projects);
 
       if (!this.state.projects.length) {
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -30192,7 +30629,7 @@ function (_Component) {
           key: project.id
         }, project.name, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
           className: "badge badge-primary badge-pill"
-        }, project.tasks_count));
+        }, project.uncompleted_tasks_count));
       })))))));
     }
   }]);
@@ -30217,7 +30654,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_toggle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toggle */ "./node_modules/react-toggle/dist/component/index.js");
+/* harmony import */ var react_toggle__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_toggle__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -30238,6 +30685,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 
 
+
 var SingleProject =
 /*#__PURE__*/
 function (_Component) {
@@ -30253,13 +30701,17 @@ function (_Component) {
       project: {},
       tasks: [],
       title: "",
-      errors: []
+      errors: [],
+      onlyPending: false
     };
     _this.handleMarkProjectAsCompleted = _this.handleMarkProjectAsCompleted.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleFieldChange = _this.handleFieldChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.handleAddNewTask = _this.handleAddNewTask.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.hasErrorFor = _this.hasErrorFor.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.renderErrorFor = _this.renderErrorFor.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleTaskStatusChange = _this.handleTaskStatusChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.showTasks = _this.showTasks.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleMarkTaskAsCompleted = _this.handleMarkTaskAsCompleted.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
@@ -30340,27 +30792,78 @@ function (_Component) {
       var _this4 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/tasks/".concat(taskId)).then(function (response) {
-        _this4.setState(function (prevState) {
-          return {
-            tasks: prevState.tasks.filter(function (task) {
-              return task.id !== taskId;
-            })
-          };
+        var index = _this4.state.tasks.findIndex(function (task) {
+          return task.id === taskId;
+        });
+
+        _this4.setState({
+          tasks: [].concat(_toConsumableArray(_this4.state.tasks.slice(0, index)), [Object.assign({}, _this4.state.tasks[index], {
+            is_completed: true
+          })], _toConsumableArray(_this4.state.tasks.slice(index + 1)))
         });
       });
     } //END TASK METHODS
 
   }, {
-    key: "handelBackHome",
-    value: function handelBackHome() {
+    key: "handleBackHome",
+    value: function handleBackHome() {
       var history = this.props.history;
       history.push("/");
+    } //////////////////////////////////////
+
+  }, {
+    key: "handleTaskStatusChange",
+    value: function handleTaskStatusChange(e) {
+      // if (!e.target.checked) {
+      //     this.setState({ onlyPending: true });
+      // } else {
+      //     this.setState({ onlyPending: false });
+      // }
+      this.state.onlyPending = !this.state.onlyPending;
+    }
+  }, {
+    key: "showTasks",
+    value: function showTasks(tasksList) {
+      var _this5 = this;
+
+      if (this.state.onlyPending == false) {
+        return tasksList.map(function (task) {
+          return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+            className: "list-group-item d-flex justify-content-between align-items-center",
+            key: task.id
+          }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, task.title), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(TaskStatus, {
+            status: task.is_completed
+          }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+            className: "btn btn-primary btn-sm",
+            onClick: _this5.handleMarkTaskAsCompleted.bind(_this5, task.id)
+          }, "Mark as completed"));
+        }); // } else {
+        //     return tasksList.map(task => {
+        //         if (task.is_completed) {
+        //             return (
+        //                 <li
+        //                     className="list-group-item d-flex justify-content-between align-items-center"
+        //                     key={task.id}
+        //                 >
+        //                     <span>{task.title}</span>
+        //                     <TaskStatus status={task.is_completed} />
+        //                     {/* <button
+        //                         className="btn btn-primary btn-sm"
+        //                         onClick={this.handleMarkTaskAsCompleted.bind(
+        //                             task.id
+        //                         )}
+        //                     >
+        //                         Mark as completed
+        //                     </button> */}
+        //                 </li>
+        //             );
+        //         }
+        //     });
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
-
       var _this$state = this.state,
           project = _this$state.project,
           tasks = _this$state.tasks;
@@ -30393,11 +30896,16 @@ function (_Component) {
         className: "card-body"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, project.description), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         className: "btn btn-success mr-3 btn-sm",
-        onClick: this.handelBackHome.bind(this)
+        onClick: this.handleBackHome.bind(this)
       }, "Back"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         className: "btn btn-primary btn-sm",
         onClick: this.handleMarkProjectAsCompleted
-      }, "Mark as completed"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+      }, "Mark as completed"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "mt-1 float-right"
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "Only Pending \xA0\xA0"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_toggle__WEBPACK_IMPORTED_MODULE_2___default.a, {
+        defaultChecked: this.state.onlyPending,
+        onChange: this.handleTaskStatusChange
+      })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
         onSubmit: this.handleAddNewTask
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "input-group"
@@ -30414,20 +30922,41 @@ function (_Component) {
         className: "btn btn-primary"
       }, "Add")), this.renderErrorFor("title"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
         className: "list-group mt-3"
-      }, tasks.map(function (task) {
-        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
-          className: "list-group-item d-flex justify-content-between align-items-center",
-          key: task.id
-        }, task.title, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-          className: "btn btn-primary btn-sm",
-          onClick: _this5.handleMarkTaskAsCompleted.bind(_this5, task.id)
-        }, "Mark as completed"));
-      })))))));
+      }, this.showTasks(this.state.tasks)))))));
     }
   }]);
 
   return SingleProject;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+var TaskStatus =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TaskStatus, _React$Component);
+
+  function TaskStatus(props) {
+    _classCallCheck(this, TaskStatus);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(TaskStatus).call(this));
+  }
+
+  _createClass(TaskStatus, [{
+    key: "render",
+    value: function render() {
+      if (this.props.status) {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+          className: "badge badge-success"
+        }, "Completed");
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+          className: "badge badge-danger"
+        }, "Pending");
+      }
+    }
+  }]);
+
+  return TaskStatus;
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (SingleProject);
 

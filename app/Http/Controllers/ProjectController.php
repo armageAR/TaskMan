@@ -14,11 +14,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Project::where('is_completed', false)
+        return Project::TaskUncompleted()
             ->orderBy('created_at', 'desc')
-            ->withCount(['tasks' => function ($query) {
-                $query->where('is_completed', false);
-            }])
+            ->withCount('uncompletedTasks')
             ->get();
     }
 
@@ -60,9 +58,12 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return Project::with(['tasks' => function ($query) {
-            $query->where('is_completed', false);
-        }])->find($id);
+        // return Project::with(['tasks' => function ($query) {
+        //     $query->where('is_completed', false);
+        // }])->find($id);
+        //return Project::TaskUncompleted()->with('uncompletedTasks')->find($id);
+        return Project::with('tasks')->find($id);
+
 
 
     }
@@ -85,13 +86,13 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
+    public function update(Request $request, $id)
+    {
     //     $Project = Project::findOrFail($id);
     //     $Project->update($request->all());
 
     //     return $Project;
-    // }
+    }
 
     /**
      * Remove the specified resource from storage.

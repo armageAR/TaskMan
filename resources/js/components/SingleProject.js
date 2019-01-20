@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import Toggle from "react-toggle";
 
 class SingleProject extends Component {
     constructor(props) {
@@ -8,7 +9,8 @@ class SingleProject extends Component {
             project: {},
             tasks: [],
             title: "",
-            errors: []
+            errors: [],
+            onlyPending: false
         };
         this.handleMarkProjectAsCompleted = this.handleMarkProjectAsCompleted.bind(
             this
@@ -17,6 +19,11 @@ class SingleProject extends Component {
         this.handleAddNewTask = this.handleAddNewTask.bind(this);
         this.hasErrorFor = this.hasErrorFor.bind(this);
         this.renderErrorFor = this.renderErrorFor.bind(this);
+        this.handleTaskStatusChange = this.handleTaskStatusChange.bind(this);
+        this.showTasks = this.showTasks.bind(this);
+        this.handleMarkTaskAsCompleted = this.handleMarkTaskAsCompleted.bind(
+            this
+        );
     }
 
     componentDidMount() {
@@ -85,22 +92,79 @@ class SingleProject extends Component {
             );
         }
     }
-
     handleMarkTaskAsCompleted(taskId) {
         axios.put(`/api/tasks/${taskId}`).then(response => {
-            this.setState(prevState => ({
-                tasks: prevState.tasks.filter(task => {
-                    return task.id !== taskId;
-                })
-            }));
+            var index = this.state.tasks.findIndex(task => task.id === taskId);
+            this.setState({
+                tasks: [
+                    ...this.state.tasks.slice(0, index),
+                    Object.assign({}, this.state.tasks[index], {
+                        is_completed: true
+                    }),
+                    ...this.state.tasks.slice(index + 1)
+                ]
+            });
         });
     }
-
     //END TASK METHODS
 
-    handelBackHome() {
+    handleBackHome() {
         const { history } = this.props;
         history.push("/");
+    }
+
+    //////////////////////////////////////
+    handleTaskStatusChange(e) {
+        // if (!e.target.checked) {
+        //     this.setState({ onlyPending: true });
+        // } else {
+        //     this.setState({ onlyPending: false });
+        // }
+        this.state.onlyPending = !this.state.onlyPending;
+    }
+    showTasks(tasksList) {
+        if (this.state.onlyPending == false) {
+            return tasksList.map(task => (
+                <li
+                    className="list-group-item d-flex justify-content-between align-items-center"
+                    key={task.id}
+                >
+                    <span>{task.title}</span>
+                    <TaskStatus status={task.is_completed} />
+                    <button
+                        className="btn btn-primary btn-sm"
+                        onClick={this.handleMarkTaskAsCompleted.bind(
+                            this,
+                            task.id
+                        )}
+                    >
+                        Mark as completed
+                    </button>
+                </li>
+            ));
+            // } else {
+            //     return tasksList.map(task => {
+            //         if (task.is_completed) {
+            //             return (
+            //                 <li
+            //                     className="list-group-item d-flex justify-content-between align-items-center"
+            //                     key={task.id}
+            //                 >
+            //                     <span>{task.title}</span>
+            //                     <TaskStatus status={task.is_completed} />
+            //                     {/* <button
+            //                         className="btn btn-primary btn-sm"
+            //                         onClick={this.handleMarkTaskAsCompleted.bind(
+            //                             task.id
+            //                         )}
+            //                     >
+            //                         Mark as completed
+            //                     </button> */}
+            //                 </li>
+            //             );
+            //         }
+            //     });
+        }
     }
     render() {
         const { project, tasks } = this.state;
@@ -127,7 +191,7 @@ class SingleProject extends Component {
                                 <p>{project.description}</p>
                                 <button
                                     className="btn btn-success mr-3 btn-sm"
-                                    onClick={this.handelBackHome.bind(this)}
+                                    onClick={this.handleBackHome.bind(this)}
                                 >
                                     Back
                                 </button>
@@ -137,6 +201,14 @@ class SingleProject extends Component {
                                 >
                                     Mark as completed
                                 </button>
+
+                                <div className="mt-1 float-right">
+                                    <span>Only Pending &nbsp;&nbsp;</span>
+                                    <Toggle
+                                        defaultChecked={this.state.onlyPending}
+                                        onChange={this.handleTaskStatusChange}
+                                    />
+                                </div>
 
                                 <hr />
                                 <form onSubmit={this.handleAddNewTask}>
@@ -161,26 +233,8 @@ class SingleProject extends Component {
                                         {this.renderErrorFor("title")}
                                     </div>
                                 </form>
-
                                 <ul className="list-group mt-3">
-                                    {tasks.map(task => (
-                                        <li
-                                            className="list-group-item d-flex justify-content-between align-items-center"
-                                            key={task.id}
-                                        >
-                                            {task.title}
-
-                                            <button
-                                                className="btn btn-primary btn-sm"
-                                                onClick={this.handleMarkTaskAsCompleted.bind(
-                                                    this,
-                                                    task.id
-                                                )}
-                                            >
-                                                Mark as completed
-                                            </button>
-                                        </li>
-                                    ))}
+                                    {this.showTasks(this.state.tasks)}
                                 </ul>
                             </div>
                         </div>
@@ -188,6 +242,18 @@ class SingleProject extends Component {
                 </div>
             </div>
         );
+    }
+}
+class TaskStatus extends React.Component {
+    constructor(props) {
+        super();
+    }
+    render() {
+        if (this.props.status) {
+            return <span className="badge badge-success">Completed</span>;
+        } else {
+            return <span className="badge badge-danger">Pending</span>;
+        }
     }
 }
 

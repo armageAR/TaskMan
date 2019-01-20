@@ -20,6 +20,7 @@ class ProjectsList extends Component {
 
     render() {
         const { projects } = this.state;
+        //console.log(projects);
         if (!this.state.projects.length) {
             return (
                 <div className="container py-4">
@@ -58,7 +59,9 @@ class ProjectsList extends Component {
                                         >
                                             {project.name}
                                             <span className="badge badge-primary badge-pill">
-                                                {project.tasks_count}
+                                                {
+                                                    project.uncompleted_tasks_count
+                                                }
                                             </span>
                                         </Link>
                                     ))}
